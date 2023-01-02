@@ -28,7 +28,7 @@ export default function Post() {
     if (!post.description) {
       toast.error("Description field is empty 😅", {
         position: toast.POSITION.TOP_CENTER,
-        autoClose: 1500,
+        autoClose: 500,
       });
       return; // exit function
     }
@@ -36,7 +36,7 @@ export default function Post() {
     if (post.description.length > 300) {
       toast.error("Description field is too long 😅", {
         position: toast.POSITION.TOP_CENTER,
-        autoClose: 1500,
+        autoClose: 500,
       });
       return; // exit function
     }
@@ -54,7 +54,7 @@ export default function Post() {
       // having a pop up that says the post has been updated
       toast.success("Post has been updated 😃", {
         position: toast.POSITION.TOP_CENTER,
-        autoClose: 1500,
+        autoClose: 500,
       });
 
       // exit function and page and go back to home page
@@ -77,7 +77,7 @@ export default function Post() {
     // having a pop up that says the post has been submitted
     toast.success("Post has been made 😃", {
       position: toast.POSITION.TOP_CENTER,
-      autoClose: 1500,
+      autoClose: 500,
     });
 
     // when post is submitted go to the homepage and exit function and page

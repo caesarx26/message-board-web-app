@@ -107,7 +107,7 @@ export default function Details() {
             type="text"
             value={message}
             placeholder="Leave a comment 😄"
-            className="bg-gray-800 w-full p-2 text-white text-sm"
+            className="bg-gray-800  h-20 w-full p-2 text-white text-sm"
           ></textarea>
 
           <p

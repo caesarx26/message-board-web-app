@@ -11,7 +11,9 @@ Setup a firebase project:
 Go to https://firebase.google.com/ and log in using a google account.
 Create a new project and hit continue with the default settings.
 Go into authentication and add a new provider and select google so people can sign in using their google account.
+
 Go to the Cloud Firestore and go into rules and paste the following for the rules.
+
 rules_version = '2';
 service cloud.firestore {
 match /databases/{database}/documents {
@@ -24,6 +26,7 @@ allow read, write: if request.auth != null;
 Go into the project settings and look at SDK setup and configuration.
 This is where you will find the values needed for the environment variables used in the firebase config
 It will look like this.
+
 const firebaseConfig = {
 apiKey: "example",
 authDomain: "example",
@@ -35,6 +38,7 @@ measurementId: "example"
 };
 
 Copy these variable values into an env file by filling these variables in with the values.
+
 NEXT_PUBLIC_API_KEY =  
 NEXT_PUBLIC_AUTH_DOMAIN =
 NEXT_PUBLIC_PROJECT_ID =

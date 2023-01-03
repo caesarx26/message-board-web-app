@@ -5,7 +5,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 This website allows users to sign in using a google account and leave posts and comment on posts.
 The website uses next js, firebase, and tailwind.
 
-## how to run project
+## How to run project
 
 Setup a firebase project:
 Go to https://firebase.google.com/ and log in using a google account.

@@ -3,7 +3,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Description of the website
 
 This website allows users to sign in using a google account and leave posts and comment on posts.
-Teh website uses next js, firebase, and tailwind.
+The website uses next js, firebase, and tailwind.
 
 ## how to run project
 

@@ -47,6 +47,11 @@ export default function Dashboard() {
     });
   };
 
+  // to sign out the current google user
+  const signOut = () => {
+    auth.signOut();
+  };
+
   //Get users data
   useEffect(() => {
     getData();
@@ -89,7 +94,7 @@ export default function Dashboard() {
       </div>
       <button
         className="font-medium text-white bg-gray-800 py-2 px-4 my-6"
-        onClick={() => auth.signOut()}
+        onClick={() => signOut()}
       >
         Sign out
       </button>

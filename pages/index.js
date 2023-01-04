@@ -39,12 +39,9 @@ export default function Home() {
         {allPosts.map((post) => (
           <Message key={post.id} {...post}>
             <Link href={{ pathname: `/${post.id}`, query: { ...post } }}>
-              <button>
-                <button className="text-black-600 flex items-center justify-center gap-2 py-2 text-lg">
-                  <MdOutlineComment className="text-2xl" />
-                  {post.comments?.length > 0 ? post.comments?.length : 0}{" "}
-                  comments
-                </button>
+              <button className="text-black-600 flex items-center justify-center gap-2 py-2 text-lg">
+                <MdOutlineComment className="text-2xl" />
+                {post.comments?.length > 0 ? post.comments?.length : 0} comments
               </button>
             </Link>
           </Message>

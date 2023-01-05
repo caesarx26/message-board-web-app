@@ -8,6 +8,8 @@ export default function Nav() {
   // to get the photo url from the google user
   const getPhotoURL = () => {
     const photoURL = user.photoURL;
+    console.log("photo url: ");
+    console.log(photoURL);
     return photoURL;
   };
 

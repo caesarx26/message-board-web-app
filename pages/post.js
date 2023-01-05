@@ -43,6 +43,8 @@ export default function Post() {
 
     // if the post has an id update the post
     if (post?.hasOwnProperty("id")) {
+      console.log("post:");
+      console.log(post.id);
       // updating post
       const docRef = doc(db, "posts", post.id);
       const updatedPost = { ...post, timestamp: serverTimestamp() };

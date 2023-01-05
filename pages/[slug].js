@@ -22,7 +22,6 @@ export default function Details() {
   const [message, setMessage] = useState("");
   // will send an array to the database
   const [allMessages, setAllMessages] = useState([]);
-  const [comment, setComment] = useState("");
 
   // submit a message
   const submitMessage = async () => {
@@ -50,13 +49,13 @@ export default function Details() {
     // adding a comment into the document
     const docRef = doc(db, "posts", routeData.id);
     await updateDoc(docRef, {
-      comments: {
-        message: comment,
+      comments: arrayUnion({
+        message: message,
         user: auth.currentUser.uid,
         avatar: auth.currentUser.photoURL,
         userName: auth.currentUser.displayName,
         time: Timestamp.now(),
-      },
+      }),
     });
 
     // throwing a pop that the comment was made
@@ -67,77 +66,6 @@ export default function Details() {
 
     // reset message
     setMessage("");
-  };
-
-  const placeTextArea = () => {
-    const editButton = document.getElementById("edit-button");
-    editButton.style.display = "none";
-
-    // getting current comment
-    const currentComment = document.getElementById("current-comment");
-    currentComment.style.display = "none";
-
-    // getting current comment and setting to the edited comment
-    setComment(currentComment.innerText);
-    const divEdit = document.getElementById("div-edit");
-    divEdit.style.display = "";
-  };
-
-  // to edit a comment the user made a new comment
-  const editComment = async () => {
-    // check if user is logged in and if not go to the login page
-    if (!auth.currentUser) return router.push("/auth/login");
-
-    // if message is empty send exit function and throw a pop up on screen
-    if (!comment) {
-      toast.error("Don't leave an empty comment 😅", {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 500,
-      });
-      return; // exit function
-    }
-
-    // if message is too long throw a pop up on screen and exit function
-    if (comment.length > 300) {
-      toast.error("Comment is too long 😅", {
-        position: toast.POSITION.TOP_CENTER,
-        autoClose: 500,
-      });
-      return; // exit function
-    }
-
-    // updating comment in the document
-    const docRef = doc(db, "posts", routeData.id);
-    await updateDoc(docRef, {
-      comments: arrayUnion({
-        message: comment,
-        user: auth.currentUser.uid,
-        avatar: auth.currentUser.photoURL,
-        userName: auth.currentUser.displayName,
-        time: Timestamp.now(),
-      }),
-    });
-
-    // throwing a pop that the comment was made
-    toast.success("Comment has been updated 😃", {
-      position: toast.POSITION.TOP_CENTER,
-      autoClose: 500,
-    });
-
-    // reset message
-    setComment("");
-
-    // showing edit button again
-    const editButton = document.getElementById("edit-button");
-    editButton.style.display = "";
-
-    // showing current comment
-    const currentComment = document.getElementById("current-comment");
-    currentComment.style.display = "";
-
-    // getting rid of edit section
-    const divEdit = document.getElementById("div-edit");
-    divEdit.style.display = "none";
   };
 
   // get comments
@@ -201,6 +129,7 @@ export default function Details() {
         </div>
         <div className="py-6">
           <h2 className="font-bold">Comments</h2>
+
           {allMessages?.map((message) => (
             <div className="bg-white p-4 my-4 border-2" key={message.time}>
               <div className="flex items-center gap-2 mb-4">
@@ -211,44 +140,7 @@ export default function Details() {
                 />
                 <h2>{message.userName}</h2>
               </div>
-              <h2 id="current-comment">{message.message}</h2>
-
-              {message.user == auth.currentUser.uid && (
-                <div>
-                  <button
-                    id="edit-button"
-                    style={{ display: "" }}
-                    className="text-teal-600 flex items-center justify-center gap-2 py-2 text-sm"
-                    onClick={placeTextArea}
-                  >
-                    <AiFillEdit className="text-2xl" />
-                    Edit
-                  </button>
-
-                  <div id="div-edit" style={{ display: "none" }}>
-                    <textarea
-                      value={comment}
-                      onChange={(e) => setComment(e.target.value)}
-                      type="text"
-                      className="bg-gray-800  h-20 w-full p-2 text-white text-sm"
-                    ></textarea>
-
-                    <p
-                      className={`text-cyan-600 font-medium text-sm ${
-                        comment.length > 300 ? "text-red-600" : ""
-                      }`}
-                    >
-                      {comment.length}/300
-                      <button
-                        onClick={editComment}
-                        className="bg-cyan-500 text-white py-2 px-4 text-sm float-right"
-                      >
-                        Submit
-                      </button>
-                    </p>
-                  </div>
-                </div>
-              )}
+              <h2>{message.message}</h2>
             </div>
           ))}
         </div>

@@ -10,9 +10,10 @@ The website uses next js, firebase, and tailwind.
 - Setup a firebase project:
   Go to https://firebase.google.com/ and log in using a google account.
   Create a new project and hit continue with the default settings.
-  Go into authentication and add a new provider and select google so people can sign in using their google account.
 
-- Go to the Cloud Firestore and go into rules and paste the following for the rules:
+- In your firebase project go into authentication and add a new provider and select google so people can sign in using their google account.
+
+- In your firebase project go to the Cloud Firestore and go into rules and paste the following for the rules:
 
 ```
   rules_version = '2';
@@ -26,7 +27,7 @@ The website uses next js, firebase, and tailwind.
 ```
 
 - Go into the project settings and look at SDK setup and configuration.
-  This is where you will find the values needed for the environment variables used in the firebase config
+  This is where you will find the values needed for the environment variables used in the firebase config.
   It will look like this:
 
   ```
@@ -41,7 +42,7 @@ The website uses next js, firebase, and tailwind.
   };
   ```
 
-- Copy these variable values into an env file by filling these variables in with the values in the firebase config:
+- Copy these variables into an env file and fill these variables in with the values in the firebase config:
 
   ```
   NEXT_PUBLIC_API_KEY = example

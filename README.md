@@ -11,7 +11,7 @@ The website uses next js, firebase, and tailwind.
   Go to https://firebase.google.com/ and log in using a google account.
   Create a new project and hit continue with the default settings.
 
-- In your firebase project go into authentication and add a new provider and select google so people can sign in using their google account.
+- In your firebase project go into authentication settings and add a new provider and select google so people can sign in using their google account.
 
 - In your firebase project go to the Cloud Firestore and go into rules and paste the following for the rules:
 
@@ -26,7 +26,7 @@ The website uses next js, firebase, and tailwind.
   }
 ```
 
-- Go into the project settings and look at SDK setup and configuration.
+- In your firebase project go into the project settings and look at SDK setup and configuration.
   This is where you will find the values needed for the environment variables used in the firebase config.
   It will look like this:
 
